@@ -1,7 +1,13 @@
 <center>
   <h1>Events</h1>
 
-  <%= @events.each do |event| %>
-    <%= event %>
+  <%= @event.each do |event| %>
+  <b><%= event.title %></b><br>
+    <p>Description:<br>
+    <%= event.description %></p>
+    <p>Location:<br>
+    <%= event.location %></p>
+    <p>Date:<br>
+    <%= event.date %></p>
   <% end %>
 </center> 
