@@ -1,34 +1,70 @@
 <!DOCTYPE html>
-<html>
   <head>
     <title>PrivateEvents</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="notification is-primary global-notification">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification is-danger global-notification">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
 
-  <div>
-  <h1>Welcome to Private Events! </h1>
-</div>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= link_to root_path, class: "navbar-item" do %>
+          <h1 class="title is-4">Eventdim</h1>
+        <% end %>
 
-      <% if user_signed_in? %>
-        <div class="navbar-item">
-          <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: false } %>
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <p class="control">
+              <% if current_user %>
+                <%= link_to "Create event", new_event_path, class: "button is-white" %>
+              </p>
+                <p class="control">
+                  <%= link_to current_user.email, user_path(current_user), class: "button is-white" %>
+                </p>
+                <p>
+                  <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "button is-white" %>
+                </p>
+              <% else %>
+                <p class="control">
+                  <%= link_to 'Sign In', new_user_session_path, class: "button is-white" %>
+                </p>
+						    <p class="control">
+                  <%= link_to 'Sign Up', new_user_registration_path, class: "button is-white" %>
+                </p>
+              <% end %>
+            </div>
+          </div>
         </div>
-        <% else %>
-        <div class="navbar-item">
-          <%= link_to "Sign up", new_user_registration_path, class: "button is-primary has-text-dark is-fullwidth"%>
-        </div>
-        <div class="navbar-item">
-          <%= link_to "Log In", new_user_session_path, class: "button is-primary has-text-dark is-fullwidth"%>
-        </div>
-      <% end %>
+      </div>
+    </nav>
 
     <%= yield %>
   </body>
+
+  <footer class="footer">
+   
+  </footer>
 </html>
