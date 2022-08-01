@@ -1,8 +1,10 @@
-<h1>your events!</h1>
+<center>
+  <h1>your events!</h1> 
 
-<%= @users_events.each do |event| %>
-  <%= event.title %><br>
-  <%= event.description %><br>
-  <%= event.location %><br>
-  <%= event.date %><br>
-<% end %>
+    <%= @users_events.each do |event| %> 
+      <%= event.title %><br> 
+      <%= event.description %><br> 
+      <%= event.location %><br> 
+      <%= event.date %><br> 
+    <% end %> 
+</center>

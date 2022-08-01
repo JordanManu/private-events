@@ -11,6 +11,24 @@
   </head>
 
   <body>
+
+  <div>
+  <h1>Welcome to Private Events! </h1>
+</div>
+
+      <% if user_signed_in? %>
+        <div class="navbar-item">
+          <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: false } %>
+        </div>
+        <% else %>
+        <div class="navbar-item">
+          <%= link_to "Sign up", new_user_registration_path, class: "button is-primary has-text-dark is-fullwidth"%>
+        </div>
+        <div class="navbar-item">
+          <%= link_to "Log In", new_user_session_path, class: "button is-primary has-text-dark is-fullwidth"%>
+        </div>
+      <% end %>
+
     <%= yield %>
   </body>
 </html>
