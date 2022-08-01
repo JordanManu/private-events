@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   resources :events
   resources :users
+  resources :enrollments
   
   root "events#index"
 end
