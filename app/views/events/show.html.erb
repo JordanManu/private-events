@@ -1,0 +1,9 @@
+<center>
+  <div>
+    <%= @event.title %><br>
+    <%= @event.description %><br>
+    <%= @event.date %><br>
+  </div>
+
+  <div>
+    <%= button_to "Enrol", enrollment_path(event_id: @event.id), method: :create %>
