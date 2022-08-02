@@ -5,5 +5,8 @@
     <%= @event.date %><br>
   </div>
 
-  <div>
-    <%= button_to "Enrol", enrollment_path(event_id: @event.id), method: :create %>
+   <% if @event.host == current_user %>
+            <%= button_to "Invite", root_path,  class: "button is-info is-large is-fullwidth" %>
+          <% else %>
+            <%= button_to "Enroll", enrollments_path(event_id: @event.id, user_id: current_user.id), class: "button is-primary is-large is-fullwidth" %>
+  <% end %>
